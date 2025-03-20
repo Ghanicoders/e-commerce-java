@@ -1,9 +1,16 @@
 package com.ecommerce.ghani.e_cormmerce.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import lombok.Data;
 
 @Entity
@@ -18,13 +25,22 @@ public class User {
     private String password;
     private Long phoneNumber;
 
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Order> orders = new ArrayList<Order>();
+
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    private Cart cart;
+
     public User(
-            Long id, String name, String email, String password, Long phoneNumber) {
+            Long id, String name, String email, String password, Long phoneNumber, List<Order> orders, Cart cart) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.password = password;
         this.phoneNumber = phoneNumber;
+        this.orders = orders;
+        this.cart = cart;
+
     }
 
     public User() {
@@ -51,6 +67,15 @@ public class User {
         this.password = password;
     }
 
+    public void SetOrdenrs(List<Order> orders) {
+
+        this.orders = orders;
+    }
+
+    public void setCart(Cart cart) {
+        this.cart = cart;
+    }
+
     // getter methods for fields
 
     public Long getId() {
@@ -71,6 +96,15 @@ public class User {
 
     public Long getPhoneNumber() {
         return phoneNumber;
+
     }
 
+    public List<Order> getOrders() {
+
+        return orders;
+    }
+
+    public Cart getCart() {
+        return cart;
+    }
 }
