@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.ecommerce.ghani.e_cormmerce.model.Category;
 import com.ecommerce.ghani.e_cormmerce.model.Product;
 import com.ecommerce.ghani.e_cormmerce.repository.ProductJpa;
 
@@ -12,8 +13,12 @@ public class ProductService {
 
     private ProductJpa productJpa;
 
-    public ProductService(ProductJpa productJpa) {
+    private CategoryService categoryService;
+
+    public ProductService(ProductJpa productJpa, CategoryService categoryService) {
+
         this.productJpa = productJpa;
+        this.categoryService = categoryService;
     }
 
     public List<Product> getAllProducts() {
@@ -21,7 +26,9 @@ public class ProductService {
     }
 
     // adding a Product
-    public Product addProduct(Product product) {
+    public Product addProduct(Product product, Long id) {
+        Category category = categoryService.getCategoryById(id);
+        product.setCategory(category);
         return productJpa.save(product);
     }
 

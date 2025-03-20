@@ -18,6 +18,7 @@ import com.ecommerce.ghani.e_cormmerce.services.ProductService;
 @RestController
 public class ProductController {
 
+    // This is product Service Object for run bussines logic
     private ProductService productService;
 
     public ProductController(ProductService productService) {
@@ -29,9 +30,9 @@ public class ProductController {
         return new ResponseEntity<>(productService.getAllProducts(), HttpStatus.OK);
     }
 
-    @PostMapping("/product")
-    public ResponseEntity<Product> addProduct(@RequestBody Product product) {
-        return new ResponseEntity<>(productService.addProduct(product), HttpStatus.OK);
+    @PostMapping("/product/{id}")
+    public ResponseEntity<Product> addProduct(@RequestBody Product product, @PathVariable Long id) {
+        return new ResponseEntity<>(productService.addProduct(product, id), HttpStatus.OK);
     }
 
     @PutMapping("/product")

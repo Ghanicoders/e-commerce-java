@@ -20,7 +20,19 @@ public class CategoryService {
         return categoryRepo.save(category);
     }
 
+    public Category getCategoryById(Long id) {
+        return categoryRepo.findById(id).orElse(new Category());
+    }
+
     public List<Category> getCategory() {
         return categoryRepo.findAll();
+    }
+
+    public Category updCategory(Category category) {
+        return categoryRepo.save(category);
+    }
+
+    public void deleteCategory(Long id) {
+        categoryRepo.deleteById(id);
     }
 }
