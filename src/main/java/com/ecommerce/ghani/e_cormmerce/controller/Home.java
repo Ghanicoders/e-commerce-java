@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,6 +34,11 @@ public class Home {
     @GetMapping("/getcategorys")
     public ResponseEntity<List<Category>> getCategorys() {
         return new ResponseEntity<>(categoryService.getCategory(), HttpStatus.OK);
+    }
+
+    @GetMapping("/getcategory/{id}")
+    public ResponseEntity<Category> getCategorybyid(@PathVariable long id) {
+        return new ResponseEntity<>(categoryService.getCategoryById(id), HttpStatus.OK);
     }
 
     @PostMapping("/category")
