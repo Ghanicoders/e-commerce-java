@@ -28,11 +28,13 @@ public class CategoryService {
         return categoryRepo.findAll();
     }
 
-    public Category updCategory(Category category) {
-        return categoryRepo.save(category);
-    }
-
     public void deleteCategory(Long id) {
         categoryRepo.deleteById(id);
     }
+
+    public Category updateCategory(Category category) {
+
+        return categoryRepo.save(category);
+    }
+
 }

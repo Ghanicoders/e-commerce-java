@@ -31,19 +31,4 @@ public class Home {
         return "well Come to E-commerce system";
     }
 
-    @GetMapping("/getcategorys")
-    public ResponseEntity<List<Category>> getCategorys() {
-        return new ResponseEntity<>(categoryService.getCategory(), HttpStatus.OK);
-    }
-
-    @GetMapping("/getcategory/{id}")
-    public ResponseEntity<Category> getCategorybyid(@PathVariable long id) {
-        return new ResponseEntity<>(categoryService.getCategoryById(id), HttpStatus.OK);
-    }
-
-    @PostMapping("/category")
-    public ResponseEntity<Category> addCategory(@RequestBody Category category) {
-        return new ResponseEntity<>(categoryService.addCategory(category), HttpStatus.OK);
-    }
-
 }
