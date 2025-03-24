@@ -34,21 +34,26 @@ public class OrderService {
     }
 
     // order creation methods
-    public Order createOrder(Order order, Long uid, Long pid) {
+    public Product createOrder(Long uid, Long pid) {
 
-        User user = userService.getUserById(uid);
-        List<Product> product = new ArrayList<>();
+        // User user = userService.getUserById(uid);
+        // System.out.println(user.toString());
         Product p1 = productService.findById(pid);
-        product.add(p1);
-        if (user.getId() == null || product.contains(p1) == false) {
-            throw new RuntimeException("User or product not found");
-        } else {
-            order.setUser(user);
-            order.setProducts(product);
-            order.setTotap_privce(p1.getPrice()); // assuming price is in cents for simplicity
+        // System.out.println(p1.toString());
+        // if (user.getId() == null || product.contains(p1) == false) {
+        // throw new RuntimeException("User or product not found");
+        // } else {
+        // order.setUser(user);
+        // order.setProducts(product);
+        // order.setCreat_at(new java.util.Date());
+        // order.setTotap_privce(p1.getPrice()); // assuming price is in cents for
+        // simplicity
+        // System.out.println(order.toString());
 
-            return orderRepo.save(order);
-        }
+        // // return orderRepo.save(order);
+        // return order;
+        // }
+        return p1;
 
     }
 
